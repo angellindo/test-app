@@ -1,0 +1,9 @@
+.card {
+  width: 160px;
+}
+
+.banner {
+  width: 160px;
+  height: 250px;
+  background-color: grey;
+}
