@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import styles from "./card.module.css";
+import { Link } from "react-router-dom";
 
 export default function Card() {
   return (
@@ -13,7 +14,9 @@ export default function Card() {
         </div>
       </div>
       <div className="description">
-        <div className="title">Beauuty and the Beast</div>
+        <div className="title">
+          <Link to={"/details"}>Beauuty and the Beast</Link>
+        </div>
         <div className="genre">Fantasy</div>
       </div>
     </div>

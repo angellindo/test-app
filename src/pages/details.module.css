@@ -1,0 +1,20 @@
+.basic_details {
+  min-width: 110px;
+}
+
+.poster {
+  height: 300px;
+  width: 200px;
+}
+
+.minor_details dt {
+  clear: left;
+  float: left;
+  min-width: 100px;
+}
+
+.minor_details dd {
+  float: left;
+  min-width: 100px;
+  clear: right;
+}

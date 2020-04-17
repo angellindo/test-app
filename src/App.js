@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Layout from "./components/layout";
 import Home from "./pages/home";
 import Search from "./pages/search";
+import Details from "./pages/details";
 import "./App.css";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <Router>
       <Layout>
         <Switch>
+          <Route exact path="/details" component={Details} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/" component={Home} />
         </Switch>
