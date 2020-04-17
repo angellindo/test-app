@@ -37,48 +37,49 @@ export default function Details() {
     );
   }
 
+  const inlineStyles = {
+    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,  rgba(32,44,58,0.8) 60%, rgba(32,44,58,1) 95%), url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`
+  }
+
   return (
-    <div className="details relative">
-      <div className={`${styles.banner} overflow-hidden w-full`}>
-        <PosterImage original posterPath={movie.backdrop_path} title={movie.title} />
-        <div className={`${styles.gradient} pt-5 pl-10 pr-10 absolute top-0`}>
-          <h1 className="text-5xl">{movie.title}</h1>
-          <h1>{movie.tagline}</h1>
-          <div className="user-stats mt-2">
-            <span className="rating mr-4">
-              {[2, 4, 6, 8].map((stars) => {
-                return <FontAwesomeIcon key={stars} icon={faStar} />;
-              })}
-              <FontAwesomeIcon key={12} icon={faEmptyStar} />
-            </span>
-            <span className="vote-count">{`${movie.vote_count} Users`}</span>
-          </div>
-          <div className="basic-details mt-4 font-bold text-gray-500">
-            <span className="mr-4">{movie.spoken_languages.map((l) => l.name).join(", ")}</span>
-            <span className="mr-4">{movie.release_date}</span>
-            <span className="mr-4">{movie.runtime} min</span>
-            <span className="mr-4">{movie.genres.map((g) => g.name).join(", ")}</span>
-          </div>
-          <section className="mt-4 flex">
-            <div className={`${styles.poster} bg-gray-500 flex-shrink-0 rounded`}>
-              <PosterImage posterPath={movie.poster_path} title={movie.title} />
-            </div>
-            <div className="synopsis-combo flex-grow ml-4">
-              <div className="overview">
-                <h4 className="text-xl">Overview</h4>
-                <p>{movie.overview}</p>
-              </div>
-              <div className={`${styles.minor_details} mt-4`}>
-                <dl>
-                  <dt>Budget</dt>
-                  <dd>{numeral(movie.budget).format("($0,0)")}</dd>
-                  <dt>Revenue</dt>
-                  <dd>{numeral(movie.revenue).format("($0,0)")}</dd>
-                </dl>
-              </div>
-            </div>
-          </section>
+    <div className={`${styles.details} flex flex-col`} style={inlineStyles}>
+      <div className="pt-5 pl-10 pr-10">
+        <h1 className="text-5xl">{movie.title}</h1>
+        <h1>{movie.tagline}</h1>
+        <div className="user-stats mt-2">
+          <span className="rating mr-4">
+            {[2, 4, 6, 8].map((stars) => {
+              return <FontAwesomeIcon key={stars} icon={faStar} />;
+            })}
+            <FontAwesomeIcon key={12} icon={faEmptyStar} />
+          </span>
+          <span className="vote-count">{`${movie.vote_count} Users`}</span>
         </div>
+        <div className="basic-details mt-4 font-bold text-gray-500">
+          <span className="mr-4">{movie.spoken_languages.map((l) => l.name).join(", ")}</span>
+          <span className="mr-4">{movie.release_date}</span>
+          <span className="mr-4">{movie.runtime} min</span>
+          <span className="mr-4">{movie.genres.map((g) => g.name).join(", ")}</span>
+        </div>
+        <section className="mt-4 flex">
+          <div className={`${styles.poster} bg-gray-500 flex-shrink-0 rounded`}>
+            <PosterImage posterPath={movie.poster_path} title={movie.title} />
+          </div>
+          <div className="synopsis-combo flex-grow ml-4">
+            <div className="overview">
+              <h4 className="text-xl">Overview</h4>
+              <p>{movie.overview}</p>
+            </div>
+            <div className={`${styles.minor_details} mt-4`}>
+              <dl>
+                <dt>Budget</dt>
+                <dd>{numeral(movie.budget).format("($0,0)")}</dd>
+                <dt>Revenue</dt>
+                <dd>{numeral(movie.revenue).format("($0,0)")}</dd>
+              </dl>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

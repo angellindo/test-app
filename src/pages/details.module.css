@@ -1,7 +1,9 @@
-.gradient {
+.details {
+  background-size: cover;
+}
+.details > div{
   margin-top: 300px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%,  rgba(32,44,58,0.9) 50%,  rgba(32,44,58,1) 80%);
-  padding-bottom: 100px;
+  background-size: cover;
 }
 
 .poster {
