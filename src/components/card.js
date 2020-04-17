@@ -1,24 +1,26 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 import styles from "./card.module.css";
 import { Link } from "react-router-dom";
+import PosterImage from "./poster-image";
 
-export default function Card() {
+export default function Card(props) {
+  const { movie } = props;
+
   return (
     <div className={`${styles.card} inline-block`}>
-      <div className={styles.banner}>
-        <div className="rating">
-          <FontAwesomeIcon icon={faStar} />
-          <span>7.8</span>
-        </div>
+      <div className={`${styles.poster} rounded`}>
+        <Link to={`/details/${movie.id}`}>
+          <PosterImage posterPath={movie.poster_path} title={movie.title} />
+        </Link>
       </div>
-      <div className="description">
-        <div className="title">
-          <Link to={"/details"}>Beauuty and the Beast</Link>
-        </div>
-        <div className="genre">Fantasy</div>
+      <div className="title mt-2 font-bold text-sm">
+        <Link to={`/details/${movie.id}`}>{movie.title}</Link>
       </div>
     </div>
   );
 }
+
+Card.propTypes = {
+  movie: PropTypes.object,
+};
