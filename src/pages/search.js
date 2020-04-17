@@ -7,7 +7,7 @@ export default function Search() {
     <div className="mt-5 ml-10 mr-10">
       <h1 className="text-4xl">Results</h1>
       <Filters />
-      <div className="movies mt-10 grid grid-cols-5 gap-4">
+      <div className="movies mt-8 grid grid-cols-5 gap-4">
         {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((v, i) => {
           return <Card key={i}/>;
         })}
