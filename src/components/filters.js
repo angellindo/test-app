@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import styles from "./filters.module.css";
+import PropTypes from "prop-types";
 
-export default function Filters() {
+export default function Filters(props) {
+  const [starState, setStars] = useState(0);
+
   const handleRating = (e, stars) => {
-    console.log(stars)
+    const newStars = starState === stars ? -1 : stars;
+
+    setStars(newStars);
+    props.changeFilter(newStars);
   };
 
   return (
@@ -13,13 +18,14 @@ export default function Filters() {
       <div className="rating">
         <span>Rating:</span>{" "}
         {[2, 4, 6, 8, 10].map((stars) => {
+          const starClass = stars <= starState ? "text-yellow-600" : "text-gray-600";
           return (
             <FontAwesomeIcon
               key={stars}
               onClick={(e) => {
                 handleRating(e, stars);
               }}
-              className={styles.star}
+              className={starClass}
               icon={faStar}
             />
           );
@@ -28,3 +34,7 @@ export default function Filters() {
     </div>
   );
 }
+
+Filters.propTypes = {
+  changeFilter: PropTypes.func,
+};

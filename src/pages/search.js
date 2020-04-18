@@ -12,7 +12,27 @@ function useQuery() {
 
 export default function Search() {
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(-1);
   const query = useQuery();
+
+  function applyFilter() {
+    if(filter === -1) return data;
+
+    const filteredMovies = data.filter((movie) => {
+      return movie.vote_average < filter && movie.vote_average > (filter - 2);
+    });
+
+    return filteredMovies;
+  }
+
+  function renderCards() {
+    if (!data.length) return null;
+
+    return applyFilter().map((movie, i) => {
+      console.log(movie.vote_average)
+      return <Card key={i} movie={movie} />;
+    });
+  }
 
   useEffect(() => {
     async function search() {
@@ -26,7 +46,7 @@ export default function Search() {
       }
     }
 
-    if(!data.length) {
+    if (!data.length) {
       search();
     }
   }, [query, data]);
@@ -34,14 +54,9 @@ export default function Search() {
   return (
     <div className="mt-5 ml-10 mr-10">
       <h1 className="text-4xl">Results</h1>
-      <Filters />
+      <Filters changeFilter={setFilter} />
       {!data.length && <FontAwesomeIcon className="self-center" icon={faSpinner} spin size="3x" />}
-      <div className="movies mt-8 grid grid-cols-5 gap-4">
-        {!!data.length &&
-          data.map((movie, i) => {
-            return <Card key={i} movie={movie} />;
-          })}
-      </div>
+      <div className="movies mt-8 grid grid-cols-5 gap-4">{renderCards(data, filter)}</div>
     </div>
   );
 }
